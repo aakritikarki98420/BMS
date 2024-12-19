@@ -6,7 +6,7 @@ import Signup from './Pages/Signup'
 import Navbar from './Pages/Components/Navbar'
 import Profile from './Pages/Profile'
 import Forget from './Pages/Forget'
-import OTP from './Pages/Otp'
+import OTP from './Pages/OTP'
 import Reset from './Pages/Reset'
 import Addme from './Pages/Addme'
 import SingleBlog from './Pages/SingleBlog'
@@ -16,7 +16,7 @@ import store from './store/store'
 
 
 function App() {
-  return (
+  return (+
     <>
     <Provider store={store}>
     <Navbar/>
