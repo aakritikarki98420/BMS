@@ -9,7 +9,8 @@ const blogSlice = createSlice({
     initialState: {
         blogs: [],
         status: "sucess",
-        blog:[]
+        blog:[],
+        deleteblog:[]
 
     },
     reducers: {
@@ -24,13 +25,16 @@ const blogSlice = createSlice({
         },
         setBlog(state, action){
             state.blog = action.payload
+        },
+        setDelete(state, action){
+            state.deleteblog = action.payload
         }
 
 
     }
 })
 
-export const { setBlogs, setStatus, setBlog } = blogSlice.actions
+export const { setBlogs, setStatus, setBlog , setDeleteBlog} = blogSlice.actions
 export default blogSlice.reducer
 
 export function fetchBlog() {
@@ -58,4 +62,17 @@ export function fetchSingleBlog(id) {
         }
     }
 
+}
+
+export function fetchDeleteBlog(id){
+    return async function fetchDeleteBlog(dispatch) {
+        try{
+            const response = await axios.delete("https://67512d4669dc1669ec1d4f16.mockapi.io/blogs/"+data.id)
+            dispatch(setStatus("success"))
+            dispatch(setDeleteBlog(response.data))
+        }catch(error){
+            dispatch(setStatus("error"))
+        }
+        
+    }
 }

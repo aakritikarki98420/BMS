@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { fetchSingleBlog } from "../store/blogSlice"
+import { fetchDeleteBlog, fetchSingleBlog } from "../store/blogSlice"
 
 function SingleBlog() {
     const dispatch= useDispatch()
@@ -17,10 +17,11 @@ function SingleBlog() {
     // }
     useEffect(()=>{
         dispatch(fetchSingleBlog(data.id))
+
     },[])
 
     const deleteBlog= async()=>{
-        const response = await axios.delete("https://67512d4669dc1669ec1d4f16.mockapi.io/blogs/"+data.id)
+        dispatch(fetchDeleteBlog(data.id))
         navigate("/home")
     }
     return (
